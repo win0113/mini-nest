@@ -1,9 +1,10 @@
 import "reflect-metadata";
+import * as Factory from "./factory";
 
 export const PARAMTYPES_METADATA = "design:paramtypes";
 export const SELF_DECLARED_DEPS_METADATA = "self:paramtypes";
 
-export interface Metatype<T> {
+export interface type<T> {
   new (...args: any[]): T;
 }
 
@@ -27,7 +28,7 @@ class A {
 }
 
 class Injector {
-  public reflectConstructorParams<T>(type: Metatype<T>): any[] {
+  public reflectConstructorParams<T>(type: type<T>): any[] {
     const paramtypes = Reflect.getMetadata(PARAMTYPES_METADATA, type) || [];
     const selfParams = this.reflectSelfParams<T>(type);
     console.log("paramtypes", paramtypes);
@@ -35,7 +36,7 @@ class Injector {
     return paramtypes;
   }
 
-  public reflectSelfParams<T>(type: Metatype<T>): any[] {
+  public reflectSelfParams<T>(type: type<T>): any[] {
     return Reflect.getMetadata(SELF_DECLARED_DEPS_METADATA, type) || [];
   }
 
