@@ -2,7 +2,7 @@ import { Controller, Injectable, METADATA, Type } from "../define";
 import { Container } from "../injector/container";
 
 const reflectMetadata = (metaTarget: object, metaKey: string) => {
-  return Reflect.getMetadata(metaKey, metaTarget);
+  return Reflect.getMetadata(metaKey, metaTarget) || [];
 };
 
 export class DependenciesScanner {
@@ -15,6 +15,7 @@ export class DependenciesScanner {
   scanForModule(module: Type<unknown>) {
     this.insertModule(module);
     const importModules = reflectMetadata(module, METADATA.IMPORTS);
+    console.log("importModules", importModules);
     for (const importModule of importModules) {
       this.scanForModule(importModule);
     }

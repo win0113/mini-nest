@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 export interface ModuleMetadata {
   imports?: any[];
   providers?: any[];

@@ -3,7 +3,7 @@ import { Module } from "./module";
 import * as ModuleTokenFactory from "./module-token-factory";
 
 export class Container {
-  public readonly modules: Map<string, Module>;
+  public readonly modules = new Map<string, Module>();
 
   addModule(type: Type<unknown>) {
     const token = ModuleTokenFactory.create(type);
