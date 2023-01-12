@@ -21,3 +21,5 @@ export const METADATA = {
 
 export const PARAMTYPES_METADATA = "design:paramtypes";
 export const SELF_DECLARED_DEPS_METADATA = "self:paramtypes";
+export declare const PATH_METADATA = "path";
+export declare const METHOD_METADATA = "method";

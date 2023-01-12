@@ -9,7 +9,7 @@ import { HttpAdapter } from "./http-adapter";
 export const create = (module: Type<unknown>) => {
   const container = new Container();
   initialize(module, container);
-  const app = new Application(new HttpAdapter(),container);
+  const app = new Application(container, new HttpAdapter());
   app.listen(3000);
   const moduleA = container.modules.get("ModuleA");
   const controllerA = moduleA.controllers.get("ControllerA");

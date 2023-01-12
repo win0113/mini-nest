@@ -4,12 +4,12 @@ import { RouterResolver } from "./router/router-resolver";
 
 export class Application {
   private readonly routeResolver: RouterResolver;
-  constructor(private httpAdapter: HttpAdapter, private container: Container) {
-    this.routeResolver = new RouterResolver();
+  constructor(private container: Container, private httpAdapter: HttpAdapter) {
+    this.routeResolver = new RouterResolver(this.container, this.httpAdapter);
   }
 
   init() {
-    this.routeResolver.resolve(this.httpAdapter);
+    this.routeResolver.resolve();
   }
 
   listen(port: number) {
