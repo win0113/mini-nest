@@ -19,7 +19,7 @@ export class ControllerA {
 
   @Get("/test")
   test() {
-    console.log("hello get");
+    console.log("hello get QA");
   }
 }
 

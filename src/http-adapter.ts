@@ -1,17 +1,10 @@
 import * as http from "http";
+import * as express from "express";
 
 interface AbstractHttpAdapter {
   listen(port: number): void;
 }
 
-export class HttpAdapter implements AbstractHttpAdapter {
-  private httpServer: http.Server;
+export const httpAdapter = express();
 
-  constructor() {
-    this.httpServer = http.createServer();
-  }
-
-  listen(port: number) {
-    this.httpServer.listen(port);
-  }
-}
+export type HttpAdapter = typeof httpAdapter;

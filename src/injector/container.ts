@@ -29,7 +29,7 @@ export class Container {
   addProvider(provider: Type<Injectable>, token: string) {
     const currentModule = this.modules.get(token);
     currentModule.addProvider(provider);
-  }
+  } 
 
   addExport(exportProvider: Type<Injectable>, token: string) {
     const currentModule = this.modules.get(token);

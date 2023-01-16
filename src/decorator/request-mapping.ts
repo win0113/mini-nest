@@ -1,23 +1,13 @@
-import { METHOD_METADATA, PATH_METADATA } from "../define";
-
-export enum RequestMethod {
-  GET = 0,
-  POST,
-  PUT,
-  DELETE,
-  PATCH,
-  ALL,
-  OPTIONS,
-  HEAD,
-}
+import { METHOD_METADATA, PATH_METADATA, RequestMethod } from "../define";
 
 interface MethodMetadata {
   path: string;
   method: RequestMethod;
 }
+
 const RequestMapping = (meta: MethodMetadata): MethodDecorator => {
   const requestMethod = meta.method || RequestMethod.GET;
-  const path = meta[PATH_METADATA] || "/";
+  const path = meta.path || "/";
   return (target: Object, propertyKey: string | symbol, descriptor) => {
     Reflect.defineMetadata(METHOD_METADATA, requestMethod, descriptor.value);
     Reflect.defineMetadata(PATH_METADATA, path, descriptor.value);
